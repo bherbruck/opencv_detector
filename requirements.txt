@@ -1,0 +1,4 @@
+opencv-python
+opencv-wrapper
+simple-tracker
+imutils
