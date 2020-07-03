@@ -8,8 +8,9 @@ from simple_tracker import Tracker
 def run():
     with cvw.load_video('media/video3.mkv') as video:
         tracker = Tracker(max_distance=40, timeout=10)
+        framerate = 60
         out = cv2.VideoWriter('output/video.mp4',
-                              cv2.VideoWriter_fourcc(*"MP4V"), 60.0,
+                              cv2.VideoWriter_fourcc(*"MP4V"), framerate,
                               (int(video.get(3)), int(video.get(4))))
         for img in cvw.read_frames(video):
             gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -25,7 +26,7 @@ def run():
             
             out.write(img)
             cv2.imshow('', img)
-            if cv2.waitKey(1000//60) == 27:
+            if cv2.waitKey(1000 // framerate) == 27:
                 break
 
 
